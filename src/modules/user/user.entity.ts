@@ -10,8 +10,8 @@ import {
 } from 'typeorm';
 import { hash, compare } from 'bcrypt';
 
-import { USER_ROLE } from '@common/app.constants';
 import { Post } from '@modules/post/post.entity';
+import { USER_ROLE } from '@common/app.constants';
 import { Comment } from '@modules/comment/comment.entity';
 
 @Entity({ name: 'users' })

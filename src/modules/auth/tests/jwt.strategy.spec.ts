@@ -1,9 +1,9 @@
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { UsersService } from '@modules/users/users.service';
+import { UserService } from '@modules/user/user.service';
 import { JwtStrategy } from '@/modules/auth/strategies/jwt.strategy';
-import { UserServiceMock } from '@modules/users/tests/mocks/user.service.mock';
+import { UserServiceMock } from '@modules/user/tests/mocks/user.service.mock';
 import { ConfigServiceMock } from '@modules/auth/tests/mocks/config.service.mock';
 
 describe('JwtStrategy', () => {
@@ -18,7 +18,7 @@ describe('JwtStrategy', () => {
           useClass: ConfigServiceMock,
         },
         {
-          provide: UsersService,
+          provide: UserService,
           useClass: UserServiceMock,
         },
       ],

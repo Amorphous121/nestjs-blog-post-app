@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "Blog_Post",
+      "database": "${workspaceFolder:nestjs-blog-post-demo}/blog_post"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}

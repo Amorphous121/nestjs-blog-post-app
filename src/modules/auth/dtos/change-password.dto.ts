@@ -1,5 +1,5 @@
-import { IsNotEmpty, IsString, Validate } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsString, Validate } from 'class-validator';
 
 import { MatchPasswords } from '@decorators/password-match.decorator';
 

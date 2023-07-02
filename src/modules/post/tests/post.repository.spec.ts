@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { PostRepository } from '@modules/posts/posts.repository';
+import { PostRepository } from '@modules/post/post.repository';
 
 describe('PostsRepository', () => {
   let repository: PostRepository;

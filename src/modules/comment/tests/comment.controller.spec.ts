@@ -2,8 +2,8 @@ import { NotFoundException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import { CurrentUserDtoStub } from '@modules/user/tests/stubs';
-import { CreateCommentDtoStub } from '@modules/comment/tests/stubs';
 import { CommentService } from '@modules/comment/comment.service';
+import { CreateCommentDtoStub } from '@modules/comment/tests/stubs';
 import { CommentController } from '@modules/comment/comment.controller';
 import { CommentServiceMock } from '@modules/comment/tests/mocks/comment.service.mock';
 

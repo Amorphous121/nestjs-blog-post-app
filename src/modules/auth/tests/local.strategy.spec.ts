@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UnauthorizedException } from '@nestjs/common';
 
 import { AuthService } from '@modules/auth/auth.service';
-import { CreateUserDtoStub } from '@modules/users/tests/stubs';
+import { CreateUserDtoStub } from '@modules/user/tests/stubs';
 import { LocalStrategy } from '@/modules/auth/strategies/local.strategy';
 import { AuthServiceMock } from '@modules/auth/tests/mocks/auth.service.mock';
 

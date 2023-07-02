@@ -5,22 +5,22 @@ import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import {
   CreatePostDtoStub,
   UpdatePostDtoStub,
-} from '@modules/posts/tests/stubs';
-import { Post } from '@modules/posts/post.entity';
-import { PostsService } from '@modules/posts/posts.service';
-import { CurrentUserDtoStub } from '@/modules/users/tests/stubs';
-import { UpdatePostDto } from '@modules/posts/dtos/update-post.dto';
-import { PostRepositoryMock } from '@modules/posts/tests/mocks/posts.repository.mock';
+} from '@modules/post/tests/stubs';
+import { Post } from '@modules/post/post.entity';
+import { PostService } from '@modules/post/post.service';
+import { CurrentUserDtoStub } from '@/modules/user/tests/stubs';
+import { UpdatePostDto } from '@modules/post/dtos/update-post.dto';
+import { PostRepositoryMock } from '@modules/post/tests/mocks/post.repository.mock';
 
 describe('PostRepository', () => {
-  let postService: PostsService;
+  let postService: PostService;
   const currentUser = CurrentUserDtoStub();
   const createPostDto = CreatePostDtoStub();
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       providers: [
-        PostsService,
+        PostService,
         {
           /* 
             Only use when you have injected repository using
@@ -32,7 +32,7 @@ describe('PostRepository', () => {
       ],
     }).compile();
 
-    postService = moduleRef.get<PostsService>(PostsService);
+    postService = moduleRef.get<PostService>(PostService);
   });
 
   describe('Define', () => {

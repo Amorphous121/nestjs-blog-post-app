@@ -9,21 +9,21 @@ import {
   CreateUserDtoStub,
   UpdateUserDtoStub,
   CurrentUserDtoStub,
-} from '@modules/users/tests/stubs';
-import { User } from '@modules/users/user.entity';
-import { UsersService } from '@modules/users/users.service';
-import { UserRepository } from '@modules/users/users.repository';
-import { TCurrentUser } from '@modules/users/typings/current-user.type';
-import { UserRepositoryMock } from '@modules/users/tests/mocks/user.repository.mock';
+} from '@modules/user/tests/stubs';
+import { User } from '@modules/user/user.entity';
+import { UserService } from '@modules/user/user.service';
+import { UserRepository } from '@modules/user/user.repository';
+import { TCurrentUser } from '@modules/user/typings/current-user.type';
+import { UserRepositoryMock } from '@modules/user/tests/mocks/user.repository.mock';
 
 describe('UserService', () => {
-  let service: UsersService;
+  let service: UserService;
   let repository: UserRepository;
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       providers: [
-        UsersService,
+        UserService,
         {
           provide: UserRepository,
           useClass: UserRepositoryMock,
@@ -31,7 +31,7 @@ describe('UserService', () => {
       ],
     }).compile();
 
-    service = moduleRef.get<UsersService>(UsersService);
+    service = moduleRef.get<UserService>(UserService);
     repository = moduleRef.get<UserRepository>(UserRepository);
   });
 

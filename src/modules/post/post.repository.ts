@@ -1,5 +1,5 @@
-import { DataSource, Repository } from 'typeorm';
 import { Injectable } from '@nestjs/common';
+import { DataSource, Repository } from 'typeorm';
 
 import { Post } from '@modules/post/post.entity';
 

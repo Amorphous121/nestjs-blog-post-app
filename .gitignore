@@ -41,3 +41,6 @@ lerna-debug.log*
 
 # documentation
 documentation
+
+# Test database files
+*.sqlite

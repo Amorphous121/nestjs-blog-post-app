@@ -1,6 +1,6 @@
 import {
-  BadRequestException,
   NotFoundException,
+  BadRequestException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -10,29 +10,29 @@ import {
   SignInDtoStub,
   CreateUserDtoStub,
   CurrentUserDtoStub,
-  ResetPasswordParamsDtoStub,
-  ResetPasswordBodyDtoStub,
   ChangePasswordDtoStub,
-} from '@modules/users/tests/stubs';
+  ResetPasswordBodyDtoStub,
+  ResetPasswordParamsDtoStub,
+} from '@modules/user/tests/stubs';
 import { JwtHelper } from '@utils/jwt.util';
 import { RedisUtils } from '@utils/redis.util';
 import { AuthService } from '@modules/auth/auth.service';
-import { UsersService } from '@modules/users/users.service';
+import { UserService } from '@modules/user/user.service';
 import { JwtHelperMock } from '@utils/tests/mocks/jwt.util.mock';
 import { RedisUtilsMock } from '@utils/tests/mocks/redis.util.mock';
-import { UserServiceMock } from '@modules/users/tests/mocks/user.service.mock';
+import { UserServiceMock } from '@modules/user/tests/mocks/user.service.mock';
 import { ConfigServiceMock } from '@modules/auth/tests/mocks/config.service.mock';
 
 describe('AuthService', () => {
   let authService: AuthService;
-  let userService: UsersService;
+  let userService: UserService;
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
       providers: [
         AuthService,
         {
-          provide: UsersService,
+          provide: UserService,
           useClass: UserServiceMock,
         },
         {
@@ -51,7 +51,7 @@ describe('AuthService', () => {
     }).compile();
 
     authService = moduleRef.get<AuthService>(AuthService);
-    userService = moduleRef.get<UsersService>(UsersService);
+    userService = moduleRef.get<UserService>(UserService);
   });
 
   describe('Define', () => {

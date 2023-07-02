@@ -3,12 +3,12 @@ import * as mocks from 'node-mocks-http';
 import { Test, TestingModule } from '@nestjs/testing';
 
 import {
-  ChangePasswordDtoStub,
   CreateUserDtoStub,
   CurrentUserDtoStub,
+  ChangePasswordDtoStub,
   ResetPasswordBodyDtoStub,
   ResetPasswordParamsDtoStub,
-} from '@modules/users/tests/stubs';
+} from '@modules/user/tests/stubs';
 import { AuthService } from '@modules/auth/auth.service';
 import { AuthController } from '@modules/auth/auth.controller';
 import { AuthServiceMock } from '@modules/auth/tests/mocks/auth.service.mock';
@@ -49,7 +49,7 @@ describe('AuthController', () => {
   });
 
   describe('signIn', () => {
-    it('Should create user in application', async () => {
+    it('Should return tokens on successful login', async () => {
       const authServiceSignInSpy = jest.spyOn(authService, 'signIn');
       const result = await authController.signIn(req);
 

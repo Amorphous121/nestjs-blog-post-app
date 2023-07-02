@@ -1,4 +1,3 @@
-import { Request } from 'express';
 import {
   Req,
   Post,
@@ -21,6 +20,7 @@ import {
   ApiBadRequestResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
+import { Request } from 'express';
 
 import { User } from '@modules/user/user.entity';
 import { UserDto } from '@modules/user/dtos/user.dto';
@@ -157,6 +157,7 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Post('/logout')
+  @HttpCode(200)
   @ApiBearerAuth()
   @ApiUnauthorizedResponse({ type: ApiUnauthorizedResponseDto })
   @ApiResponse({ description: 'Success response of logout.', status: 200 })

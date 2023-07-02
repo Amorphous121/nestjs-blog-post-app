@@ -1,5 +1,3 @@
-import { hash } from 'bcrypt';
-import * as _ from 'lodash';
 import {
   Logger,
   Injectable,
@@ -7,6 +5,8 @@ import {
   BadRequestException,
   UnauthorizedException,
 } from '@nestjs/common';
+import { hash } from 'bcrypt';
+import * as _ from 'lodash';
 import { JwtSignOptions } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 
@@ -172,7 +172,7 @@ export class AuthService {
     const { oldPassword, newPassword } = changePasswordDto;
 
     const user = await this.userService.findUserById(currentUser.id);
-    const isValidPassword = user.validatePassword(oldPassword);
+    const isValidPassword = await user.validatePassword(oldPassword);
 
     if (!isValidPassword) {
       this.logger.warn(
@@ -182,7 +182,7 @@ export class AuthService {
     }
 
     user.password = await this.hashPassword(newPassword);
-    this.userService.saveUser(user);
+    await this.userService.saveUser(user);
 
     return { message: 'Password changed successfully!' };
   }

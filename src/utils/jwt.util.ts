@@ -8,9 +8,9 @@ import { JwtPayloadType } from '@modules/auth/typings/auth.type';
 @Injectable()
 export class JwtHelper {
   constructor(
-    private readonly configService: ConfigService,
     private readonly redisUtils: RedisUtils,
     private readonly jwtService: JwtService,
+    private readonly configService: ConfigService,
   ) {}
 
   signAccessToken(

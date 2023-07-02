@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 
 import { USER_ROLE } from '@common/app.constants';
-import { Comment } from '@modules/comment/comment.entity';
 import { PostService } from '@modules/post/post.service';
+import { Comment } from '@modules/comment/comment.entity';
 import { TCurrentUser } from '@modules/user/typings/current-user.type';
 import { CommentRepository } from '@modules/comment/comment.repository';
 import { CreateCommentDto } from '@modules/comment/dtos/create-comment.dto';

@@ -1,9 +1,9 @@
 import { DataSource } from 'typeorm';
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { User } from '@modules/users/user.entity';
-import { CreateUserDtoStub } from '@modules/users/tests/stubs';
-import { UserRepository } from '@modules/users/users.repository';
+import { User } from '@modules/user/user.entity';
+import { CreateUserDtoStub } from '@modules/user/tests/stubs';
+import { UserRepository } from '@modules/user/user.repository';
 
 describe('UserRepository', () => {
   let repository: UserRepository;

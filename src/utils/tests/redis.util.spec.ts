@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { RedisService } from '@liaoliaots/nestjs-redis';
 import { Test, TestingModule } from '@nestjs/testing';
+import { RedisService } from '@liaoliaots/nestjs-redis';
 
 import { RedisUtils } from '@utils/redis.util';
 

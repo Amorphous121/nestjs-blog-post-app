@@ -9,11 +9,13 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
 import { UtilsModule } from '@utils/util.module';
 import AppConstants from '@constants/app.constant';
+import { AppService } from '@modules/app/app.service';
 import { AuthModule } from '@modules/auth/auth.module';
 import { PostModule } from '@modules/post/post.module';
-import { UserModule } from '@/modules/user/user.module';
+import { UserModule } from '@modules/user/user.module';
 import { configValidationSchema } from '@/config.schema';
-import { CommentModule } from '@/modules/comment/comment.module';
+import { AppController } from '@modules/app/app.controller';
+import { CommentModule } from '@modules/comment/comment.module';
 
 @Module({
   imports: [
@@ -40,13 +42,18 @@ import { CommentModule } from '@/modules/comment/comment.module';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         return {
-          type: configService.get<'postgres' | 'sqlite'>('DATABASE_TYPE'),
+          type: configService.get<string>('DATABASE_TYPE') as
+            | 'mysql'
+            | 'postgres'
+            | 'sqlite',
           database: configService.get<string>('DATABASE'),
           host: configService.get<string>('DB_HOST'),
           port: configService.get<number>('DB_PORT'),
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
-          synchronize: ['test', 'development'].includes(process.env.NODE_ENV),
+          synchronize:
+            process.env.NODE_ENV === 'development' ||
+            process.env.NODE_ENV === 'test',
           autoLoadEntities: true,
           logging: process.env.NODE_ENV === 'development',
         };
@@ -58,8 +65,8 @@ import { CommentModule } from '@/modules/comment/comment.module';
     CommentModule,
     PostModule,
   ],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

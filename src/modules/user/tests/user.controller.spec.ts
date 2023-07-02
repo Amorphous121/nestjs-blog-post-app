@@ -5,23 +5,23 @@ import {
   CreateUserDtoStub,
   CurrentUserDtoStub,
   UpdateUserDtoStub,
-} from '@modules/users/tests/stubs';
-import { UsersService } from '@modules/users/users.service';
-import { UsersController } from '@modules/users/users.controller';
-import { UserServiceMock } from '@modules/users/tests/mocks/user.service.mock';
+} from '@modules/user/tests/stubs';
+import { UserService } from '@modules/user/user.service';
+import { UserController } from '@modules/user/user.controller';
+import { UserServiceMock } from '@modules/user/tests/mocks/user.service.mock';
 
 describe('UserController', () => {
-  let userService: UsersService;
-  let userController: UsersController;
+  let userService: UserService;
+  let userController: UserController;
 
   beforeEach(async () => {
     const moduleRef: TestingModule = await Test.createTestingModule({
-      controllers: [UsersController],
-      providers: [{ provide: UsersService, useClass: UserServiceMock }],
+      controllers: [UserController],
+      providers: [{ provide: UserService, useClass: UserServiceMock }],
     }).compile();
 
-    userService = moduleRef.get<UsersService>(UsersService);
-    userController = moduleRef.get<UsersController>(UsersController);
+    userService = moduleRef.get<UserService>(UserService);
+    userController = moduleRef.get<UserController>(UserController);
   });
 
   describe('Define', () => {
