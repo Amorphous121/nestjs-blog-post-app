@@ -9,10 +9,10 @@ import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 
 import { UtilsModule } from '@utils/util.module';
 import AppConstants from '@constants/app.constant';
-import { configValidationSchema } from 'config.schema';
 import { AuthModule } from '@modules/auth/auth.module';
 import { PostModule } from '@modules/post/post.module';
 import { UserModule } from '@/modules/user/user.module';
+import { configValidationSchema } from '@/config.schema';
 import { CommentModule } from '@/modules/comment/comment.module';
 
 @Module({
@@ -40,15 +40,15 @@ import { CommentModule } from '@/modules/comment/comment.module';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         return {
-          type: 'postgres',
+          type: configService.get<'postgres' | 'sqlite'>('DATABASE_TYPE'),
           database: configService.get<string>('DATABASE'),
           host: configService.get<string>('DB_HOST'),
           port: configService.get<number>('DB_PORT'),
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
-          synchronize: process.env.NODE_ENV === 'development',
+          synchronize: ['test', 'development'].includes(process.env.NODE_ENV),
           autoLoadEntities: true,
-          // logging: process.env.NODE_ENV === 'development',
+          logging: process.env.NODE_ENV === 'development',
         };
       },
     }),

@@ -3,11 +3,12 @@ import * as fs from 'fs/promises';
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 import { AppModule } from '@modules/app/app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   app.setGlobalPrefix('/api');
   app.useGlobalPipes(
@@ -28,7 +29,7 @@ async function bootstrap() {
       'prathmesh@bigscal.com',
     )
     .addTag('Auth', "Authentication API's")
-    .addTag('Users', "User APi's")
+    .addTag('User', "User APi's")
     .addTag('Post', "Post APi's")
     .addTag('Comment', "Comment APi's")
     .addBearerAuth()

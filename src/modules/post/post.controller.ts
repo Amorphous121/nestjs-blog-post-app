@@ -37,7 +37,7 @@ import { ApiUnauthorizedResponseDto } from '@common/api-responses/ApiUnauthorize
 
 @UseGuards(JwtAuthGuard)
 @Controller('/users/:userId/posts')
-@ApiTags('Posts')
+@ApiTags('Post')
 @ApiBearerAuth()
 export class PostController {
   private logger = new Logger(PostController.name);
