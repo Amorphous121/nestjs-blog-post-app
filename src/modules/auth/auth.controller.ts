@@ -41,6 +41,7 @@ import { ApiNotFoundResponseDto } from '@common/api-responses/ApiNotFoundRespons
 import { ApiBadRequestResponseDto } from '@common/api-responses/ApiBadRequestResponseDto';
 import { ForgotPasswordResponseDto } from '@modules/auth/dtos/forgot-password-response.dto';
 import { ApiUnauthorizedResponseDto } from '@common/api-responses/ApiUnauthorizeResponse.dto';
+import { SignInDto } from '../user/dtos/sign-in.dto';
 
 @Controller('auth')
 @ApiTags('Auth')
@@ -74,7 +75,10 @@ export class AuthController {
     type: SignInResponseDto,
   })
   @ApiUnauthorizedResponse({ type: ApiUnauthorizedResponseDto })
-  signIn(@Req() req: Request): Promise<SignInResponseDto> {
+  signIn(
+    @Body() signInDto: SignInDto,
+    @Req() req: Request,
+  ): Promise<SignInResponseDto> {
     return this.authService.signIn(req.user);
   }
 
