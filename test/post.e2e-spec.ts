@@ -1,7 +1,8 @@
 import * as request from 'supertest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { AppModule } from '@/modules/app/app.module';
+
+import { AppModule } from '@modules/app/app.module';
 import { truncateTableFromTestDatabase } from '@/helpers/test.helper';
 
 describe('', () => {
@@ -14,6 +15,12 @@ describe('', () => {
 
     app = moduleRef.createNestApplication();
     await app.init();
+  });
+
+  describe('Define', () => {
+    it('Should define the app', () => {
+      expect(app).toBeDefined();
+    });
   });
 
   afterAll(async () => {

@@ -25,6 +25,7 @@ import { Request } from 'express';
 import { User } from '@modules/user/user.entity';
 import { UserDto } from '@modules/user/dtos/user.dto';
 import { AuthService } from '@modules/auth/auth.service';
+import { ConflictResponseDto } from './dtos/conflict.dto';
 import { Serialize } from '@interceptors/serialize.interceptor';
 import { CurrentUser } from '@decorators/current-user.decorator';
 import { CreateUserDto } from '@modules/user/dtos/create-user.dto';
@@ -55,7 +56,7 @@ export class AuthController {
     status: 201,
   })
   @ApiConflictResponse({
-    description: 'User with email already exists!',
+    type: ConflictResponseDto,
   })
   signUp(@Body() createUserDto: CreateUserDto): Promise<User> {
     this.logger.log(
